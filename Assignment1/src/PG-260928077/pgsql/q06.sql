@@ -3,11 +3,25 @@
 
 SELECT title, releasedate
 FROM movies
-         JOIN releaselanguages ON movies.movid = releaselanguages.movid
-WHERE language = 'French'
-EXCEPT
-SELECT title, releasedate
-FROM movies
-         JOIN releaselanguages ON movies.movid = releaselanguages.movid
-WHERE language = 'English'
+WHERE movid IN (
+    SELECT movid
+    FROM releaselanguages
+    WHERE language = 'French'
+    EXCEPT
+    SELECT movid
+    FROM releaselanguages
+    WHERE language = 'English'
+)
 ORDER BY releasedate, title;
+
+-- Solution 2:
+-- SELECT title, releasedate
+-- FROM movies
+--          JOIN releaselanguages ON movies.movid = releaselanguages.movid
+-- WHERE language = 'French'
+-- EXCEPT
+-- SELECT title, releasedate
+-- FROM movies
+--          JOIN releaselanguages ON movies.movid = releaselanguages.movid
+-- WHERE language = 'English'
+-- ORDER BY releasedate, title;

@@ -4,14 +4,14 @@
 
 SELECT userid
 FROM review
-         JOIN movies m ON m.movid = review.movid
+         JOIN movies ON review.movid = movies.movid
 WHERE title = 'Ben-Hur'
   AND date_part('year', releasedate) = 1959
   AND rating >= 7
 EXCEPT
 SELECT userid
 FROM review
-         JOIN movies m2 ON m2.movid = review.movid
+         JOIN movies ON review.movid = movies.movid
 WHERE title = 'Ben-Hur'
   AND date_part('year', releasedate) = 2016
   AND rating > 4

@@ -4,7 +4,17 @@
 
 SELECT title, releasedate, rating
 FROM review
-         JOIN users u ON u.userid = review.userid
-         JOIN movies m on m.movid = review.movid
+         JOIN users u ON review.userid = u.userid
+         JOIN movies m ON review.movid = m.movid
 WHERE email = 'talkiesdude@movieinfo.com'
-ORDER BY releasedate, title;
+ORDER BY rating DESC, releasedate, title;
+
+-- Solution 2:
+-- SELECT title, releasedate, rating
+-- FROM review,
+--      users,
+--      movies
+-- WHERE review.movid = movies.movid
+--   AND review.userid = users.userid
+--   AND email = 'talkiesdude@movieinfo.com'
+-- ORDER BY rating DESC, releasedate, title;

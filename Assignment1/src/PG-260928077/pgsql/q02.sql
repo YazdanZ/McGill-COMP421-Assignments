@@ -1,15 +1,16 @@
 -- Find the user id of all the users who have reviewed the movie (title) Casablanca. The output should
 -- be ordered by the user id. You may assume that there is only one movie with this title.
+
 SELECT userid
-FROM review
-         JOIN movies m ON m.movid = review.movid
+FROM movies
+         JOIN review ON movies.movid = review.movid
 WHERE title = 'Casablanca'
 ORDER BY userid;
 
--- Alternatively we could query as such:
+-- Solution 2:
 -- SELECT userid
 -- FROM review,
 --      movies
--- WHERE review.movid = movies.movid
---   AND movies.title = 'Casablanca'
+-- WHERE movies.movid = review.movid
+--   AND title = 'Casablanca'
 -- ORDER BY userid;
