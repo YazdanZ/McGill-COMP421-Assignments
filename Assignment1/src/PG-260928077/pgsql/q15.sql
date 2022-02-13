@@ -4,10 +4,11 @@
 
 SELECT title, COUNT(rating) AS numreviews
 FROM review r
-         RIGHT OUTER JOIN movies m ON r.movid = m.movid
+         JOIN movies m ON r.movid = m.movid
 WHERE releasedate = (
     SELECT MAX(releasedate)
-    FROM movies
+    FROM review
+             JOIN movies ON review.movid = movies.movid
 )
 GROUP BY title
 ORDER BY title;
