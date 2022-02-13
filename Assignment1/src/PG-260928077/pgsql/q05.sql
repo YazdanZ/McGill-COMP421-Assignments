@@ -6,7 +6,7 @@ WITH movie_genre_2021(title, releasedate, genre) AS
          (
              SELECT title, releasedate, genre
              FROM movies
-                      JOIN moviegenres on movies.movid = moviegenres.movid
+                      JOIN moviegenres ON movies.movid = moviegenres.movid
              WHERE date_part('year', releasedate) = 2021
          )
 SELECT title, releasedate

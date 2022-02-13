@@ -6,7 +6,7 @@ FROM movies
 WHERE movid IN (
     SELECT m.movid
     FROM movies m
-             LEFT OUTER JOIN review r on m.movid = r.movid
+             LEFT OUTER JOIN review r ON m.movid = r.movid
     GROUP BY m.movid
     HAVING COUNT(r.rating) < 2
 )

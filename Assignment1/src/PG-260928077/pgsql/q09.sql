@@ -2,6 +2,6 @@
 
 SELECT COUNT(*) AS nummovies
 FROM moviegenres
-         JOIN movies m on moviegenres.movid = m.movid
+         JOIN movies m ON moviegenres.movid = m.movid
 WHERE genre = 'Comedy'
   AND date_part('year', releasedate) = 2021;

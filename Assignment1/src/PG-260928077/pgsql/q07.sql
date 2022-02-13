@@ -21,6 +21,6 @@ FROM (
          WHERE language = 'French'
             OR language = 'Italian'
          GROUP BY movid
-     ) as movie_langs
+     ) AS movie_langs
          JOIN movies ON movie_langs.movid = movies.movid
 ORDER BY releasedate, title;

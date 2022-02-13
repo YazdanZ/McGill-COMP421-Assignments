@@ -5,7 +5,7 @@ WITH countmovie(movid, count) AS
          (
              SELECT m.movid, COUNT(rating) AS count
              FROM review
-                      RIGHT OUTER JOIN movies m on review.movid = m.movid
+                      RIGHT OUTER JOIN movies m ON review.movid = m.movid
              GROUP BY m.movid
          )
 SELECT title, releasedate

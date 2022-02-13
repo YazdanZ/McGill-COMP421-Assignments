@@ -4,7 +4,7 @@
 
 SELECT title, COUNT(rating) AS numreviews
 FROM review r
-         RIGHT OUTER JOIN movies m on r.movid = m.movid
+         RIGHT OUTER JOIN movies m ON r.movid = m.movid
 WHERE releasedate = (
     SELECT MAX(releasedate)
     FROM movies

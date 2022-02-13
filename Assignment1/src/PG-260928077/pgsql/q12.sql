@@ -7,7 +7,7 @@ WITH num_reviews_movie(movid, numreviews) AS
          (
              SELECT m.movid, COUNT(rating) AS numreviews
              FROM review r
-                      RIGHT OUTER JOIN movies m on r.movid = m.movid
+                      RIGHT OUTER JOIN movies m ON r.movid = m.movid
              WHERE date_part('year', releasedate) = 2021
              GROUP BY m.movid
          )
