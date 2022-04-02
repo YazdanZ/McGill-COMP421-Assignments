@@ -20,6 +20,25 @@ Proj = FOREACH Jnd GENERATE highpop::country, highpop::population, vdatacsv::per
 
 Jnd2 = JOIN Proj BY iso3, vmetacsv BY iso3;
 Grpd = GROUP Jnd2 BY country;
+
+-- What does the schema look like immediately after you perform the GROUP operation step?
+-- grunt> DESCRIBE Grpd;
+-- Grpd: {
+--     group: chararray,
+--     Jnd2: {
+--         (
+--             Proj::highpop::country: chararray,
+--             Proj::highpop::population: int,
+--             Proj::vdatacsv::persons_fully_vaccinated: int,
+--             Proj::vdatacsv::iso3: chararray,
+--             vmetacsv::iso3: chararray,
+--             vmetacsv::product_name: chararray
+--         )
+--     }
+-- }
+
+
+
 Res = FOREACH Grpd {
     -- Note: population is in thousands 
     --  perc_fully_vaxxed = FOREACH Jnd2 GENERATE (persons_fully_vaccinated * 100) / (population * 1000);
