@@ -6,7 +6,12 @@
 --load vaccination metadata from HDFS and define the schema
 vmetacsv = LOAD '/data/vaccination-metadata.csv' USING PigStorage(',') AS (iso3:CHARARRAY, vaccine_name:CHARARRAY, product_name:CHARARRAY, company_name:CHARARRAY);
 Grpd = GROUP vmetacsv BY company_name;
-Aggr = FOREACH Grpd GENERATE ($0) AS company_name, COUNT(vmetacsv.iso3) AS num_supply_countries;
+
+Aggr = FOREACH Grpd {
+	iso3 = DISTINCT vmetacsv.iso3;
+	GENERATE ($0) AS company_name, COUNT(iso3) AS num_supply_countries;
+};
+
 Res = ORDER Aggr BY num_supply_countries DESC;
 LimRes = LIMIT Res 10;
 DUMP LimRes;
